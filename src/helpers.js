@@ -17,7 +17,9 @@ export function convertBytesToMbsOrKbs(filesize) {
 }
 
 export async function createFileFromUrl(url) {
-    const response = await fetch(url);
+    const response = await fetch(url, {
+        mode: 'no-cors',
+    });
     const data = await response.blob();
     const metadata = {type: data.type};
     const filename = url.replace(/\?.+/, '').split('/').pop();
